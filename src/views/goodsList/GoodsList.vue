@@ -62,8 +62,8 @@
     components: {
       NavBar,
       TabControl,
-      GoodsItem,
-      Scroll
+      Scroll,
+      GoodsItem
     },
     created() {
       // 获取商品列表
@@ -103,6 +103,8 @@
   .goods-list {
     position: relative;
     height: 100vh;
+    z-index: 1;
+    background-color: #fff;
   }
 
   .goods-list-nav {
@@ -115,9 +117,8 @@
   }
 
   .content {
-    position: absolute;
-    top: 84px;
-    bottom: 49px;
+    height: calc(100% - 84px);
+    background-color: #fff;
     overflow: hidden;
   }
 

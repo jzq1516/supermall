@@ -41,6 +41,11 @@
 </script>
 
 <style scoped>
+  .tab-control,
+  .tab-control-content {
+    height: 100%;
+  }
+
   .tab-control .tab-title {
     display: flex;
     align-items: center;

@@ -72,7 +72,7 @@
           for (let i = 0; i < res.message.length; i++) {
             let swipeData = {
               image_src: res.message[i].image_src,
-              navigator_url: `/goodsDetail/${goodsIdArr[i]}`
+              /* navigator_url: `/goodsDetail/${goodsIdArr[i]}` */
             }
             this.banners.push(swipeData)
           }

@@ -5,22 +5,17 @@
      <img slot="left" src="~assets/img/common/arrow_left.png" @click="back"/>
       <div slot="center">商品详情</div>
     </nav-bar>
-    <!-- 轮播图 -->
-    <swiper class="detail-swipe" :banners="goodsDetails.goodsBanners" indicator-color="#000"/>
-    <!-- 商品详情内容 -->
-    <div class="goods-price">￥{{goodsDetails.goods_price}}</div>
-    <div class="goods-name-con">
-      <div class="goods-name">{{goodsDetails.goods_name}}{{goodsDetails.goods_name}}{{goodsDetails.goods_name}}</div>
-      <div class="goods-collect">
-        <img src="~assets/img/goodsDetail/icon_collect.png">
-        <span>收藏</span>
-      </div>
+    <div class="detail-content">
+      <!-- 轮播图 -->
+      <swiper class="detail-swipe" :banners="goodsDetails.goodsBanners" indicator-color="#000"/>
+      <ul>
+        <li v-for="item in $store.state.cartList" :key="item.id">{{item.count}}</li>
+      </ul>
+      <!-- 商品详情内容 -->
+      <goods-content :goodsDetails="goodsDetails"/>
     </div>
-    <div class="goods-info">
-      <div class="goods-title">图文详情</div>
-      <div class="goods-info-introduce" v-html="introduce"></div>
-    </div>
-
+    <!-- 底部工具栏 -->
+    <goods-bottom-bar @addCart="addToCart"/>
 
   </div>
 </template>
@@ -30,6 +25,8 @@
   import NavBar from "components/common/navbar/NavBar.vue"
   import Swiper from "components/common/swiper/Swiper.vue"
 
+  import GoodsContent from './childComps/GoodsContent.vue'
+  import GoodsBottomBar from './childComps/GoodsBottomBar.vue'
 
   import { getGoodsDetail } from "network/goodsDetail"
 
@@ -43,13 +40,14 @@
           goods_price: 0,
           goods_introduce: '',
           goodsBanners: []
-        },
-        introduce: ''
+        }
       }
     },
     components: {
       NavBar,
-      Swiper
+      Swiper,
+      GoodsContent,
+      GoodsBottomBar
     },
     created() {
       this.getGoodsDetail()
@@ -69,23 +67,44 @@
           this.goodsDetails.goods_name = res.message.goods_name
           this.goodsDetails.goods_price = res.message.goods_price
           this.goodsDetails.goods_introduce = res.message.goods_introduce
+          this.goodsDetails.goods_small_logo = res.message.goods_small_logo
         })
       },
       // 返回上一页
       back() {
         this.$router.go(-1)
+      },
+      // 加入购物车
+      addToCart() {
+        console.log('加入购物车');
+        // 获取购物车需要展示的信息
+        const product = {} 
+        product.image_src = this.goodsDetails.goods_small_logo
+        product.title = this.goodsDetails.goods_name
+        product.price = this.goodsDetails.goods_price
+        product.id = this.goodsDetails.goods_id
+        console.log(product);
+        this.$store.dispatch('addCart', product)
       }
-    },
-    updated() {
-      this.introduce = this.goodsDetails.goods_introduce.replace(/\.webp/g, '.jpg')
-    }
+    }    
   }
 </script>
 
 <style scoped>
+  .goods-detail {
+    position: relative;
+    height: 100vh;
+    z-index: 1;
+    background-color: #fff;
+  }
+
   .goods-detail-nav {
+    position: fixed;
+    left: 0;
+    right: 0;
     background-color: var(--color-tint);
 		color: #fff;
+    z-index: 1;
   }
 
  .goods-detail-nav img {
@@ -102,49 +121,13 @@
     width: 60%;
   }
 
-  .goods-price {
-    padding: 8px;
-    font-size: 16px;
-    font-weight: bold;
-    color: var(--color-tint);
-  }
-
-  .goods-name-con {
-    height: 45px;
-    display: flex;
-    align-items: center;
-    border-top: 2px solid #dedede;
-    border-bottom: 2px solid #dedede;
-  }
-
-  .goods-name {
-    flex: 5;
-    font-size: 15px;
-    padding: 0 5px;
-    display: -webkit-box;
-    overflow: hidden;
-    -webkit-box-orient: vertical;
-    -webkit-line-clamp: 2;
-  }
-
-  .goods-collect {
-    flex: 1;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    border-left: 1px solid #000;
-  }
-
-  .goods-collect img {
-    width: 20px;
-  }
-
-  .goods-title {
-    font-size: 16px;
-    font-weight: bold;
-    color: var(--color-tint);
-    padding: 10px;
+  .detail-content {
+    position: absolute;
+    top: 44px;
+    bottom: 49px;
+    left: 0;
+    right: 0;
+    background-color: #fff;
   }
 
 </style>
