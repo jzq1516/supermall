@@ -1,6 +1,6 @@
 <template>
   <div class="check-button" :class="{check: isChecked}">
-    <img src="~assets/img/common/icon_right.png">
+    <img v-show="isChecked" src="~assets/img/common/icon_right.png">
   </div>
 </template>
 
@@ -11,7 +11,7 @@
       isChecked: {
         type: Boolean,
         default() {
-          return false
+          return true
         }
       }
     }
@@ -23,8 +23,8 @@
     display: flex;
     justify-content: center;
     align-items: center;
-    width: 24px;
-    height: 24px;
+    width: 25px;
+    height: 25px;
     border: 2px solid #aaa;
     padding: 3px;
     border-radius: 50%;

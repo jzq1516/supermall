@@ -8,9 +8,6 @@
     <div class="detail-content">
       <!-- 轮播图 -->
       <swiper class="detail-swipe" :banners="goodsDetails.goodsBanners" indicator-color="#000"/>
-      <ul>
-        <li v-for="item in $store.state.cartList" :key="item.id">{{item.count}}</li>
-      </ul>
       <!-- 商品详情内容 -->
       <goods-content :goodsDetails="goodsDetails"/>
     </div>
@@ -29,6 +26,8 @@
   import GoodsBottomBar from './childComps/GoodsBottomBar.vue'
 
   import { getGoodsDetail } from "network/goodsDetail"
+
+  import { mapActions } from 'vuex'
 
   export default {
     name: "GoodsDetail",
@@ -53,6 +52,7 @@
       this.getGoodsDetail()
     },
     methods: {
+      ...mapActions(['addCart']),
       // 网络请求
       getGoodsDetail() {
         let id = this.$route.params.id
@@ -76,15 +76,19 @@
       },
       // 加入购物车
       addToCart() {
-        console.log('加入购物车');
         // 获取购物车需要展示的信息
         const product = {} 
         product.image_src = this.goodsDetails.goods_small_logo
         product.title = this.goodsDetails.goods_name
         product.price = this.goodsDetails.goods_price
         product.id = this.goodsDetails.goods_id
-        console.log(product);
-        this.$store.dispatch('addCart', product)
+        // this.$store.dispatch('addCart', product).then(res => {
+        //   console.log(res);
+        // })
+        this.addCart(product).then(res => {
+          console.log(res);
+          this.$toast.show(res)
+        })
       }
     }    
   }
