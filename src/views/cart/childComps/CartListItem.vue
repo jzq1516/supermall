@@ -5,7 +5,7 @@
       <check-button :is-checked="product.checked" @click.native="checkClick"/>
     </div>
     <!-- 商品图片 -->
-    <a href="javascript:;" class="cart-img-wrap">
+    <a :href="'/goodsDetail/' + product.id" class="cart-img-wrap">
       <img :src="product.image_src" @load="imgLoad">
     </a>
     <!-- 商品信息 -->

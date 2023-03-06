@@ -12,6 +12,10 @@
 	export default {
 		name: "Scroll",
     props: {
+      probeType: {
+        type: Number,
+        default: 0
+      },
       pullUpLoad: { 
         type: Boolean,
         default: false
@@ -24,17 +28,23 @@
 		},
 		mounted() {
 			this.scroll = new BScroll(this.$refs.wrapper,{
+        click: true,
         mouseWheel: true,
+        probeType: this.probeType,
         pullUpLoad: this.pullUpLoad,
-        click: true
 			})
-
       if(this.pullUpLoad) {
         this.scroll.on('pullingUp', ()=>{
           this.$emit('pullingUp')
         })
       }
+      this.scroll.on('scroll', (position) => {
+        this.$emit('scroll', position)
+      })
 		},
+    updated() {
+      this.scroll.refresh()
+    },
 		methods: {
 			scrollTo(x, y, time=300) {
 				this.scroll && this.scroll.scrollTo(x, y, time)

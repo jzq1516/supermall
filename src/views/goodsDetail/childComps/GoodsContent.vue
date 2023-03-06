@@ -82,4 +82,9 @@
     color: var(--color-tint);
     padding: 10px;
   }
+
+  .goods-info {
+    padding-bottom: 49px;
+  }
+
 </style>

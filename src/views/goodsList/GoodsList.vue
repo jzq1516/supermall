@@ -5,9 +5,16 @@
       <img slot="left" src="~assets/img/common/arrow_left.png" @click="back"/>
       <div slot="center">商品列表</div>
     </nav-bar>
+    <!-- 商品列表 -->
     <tab-control :titles="titles" @handleTabClick="handleTabClick">
       <template v-if="titles[0].isActive">
-        <scroll class="content" ref="scroll" :pull-up-load="true" @pullingUp="loadMore">
+        <scroll class="content" 
+                ref="scroll" 
+                :probe-type="3"
+                @scroll="contentScroll"
+                :pull-up-load="true" 
+                @pullingUp="loadMore"
+        >
           <goods-item :goods="goods.list" @imgLoad="imgLoad"/>
         </scroll>
       </template>
@@ -18,6 +25,8 @@
         <img class="nodata" src="https://i.postimg.cc/1zp5fHsh/nodata.jpg"/>
       </template>
     </tab-control>
+    <!-- 回到顶部 -->
+    <back-top @click.native="backClick" v-show="isShowBackTop"/>
   </div>
 </template>
 
@@ -26,10 +35,12 @@
   import NavBar from 'components/common/navbar/NavBar.vue'
   import TabControl from "components/content/tabControl/TabControl.vue"
   import Scroll from "components/common/scroll/Scroll.vue"
+  import BackTop from "components/content/backTop/BackTop.vue"
 
   import GoodsItem from './childComps/GoodsItem.vue'
 
   import { getGoodsList } from 'network/goodsList'
+  import { itemListenMixin, backTopMixin } from 'common/mixin.js'
 
 
   export default {
@@ -63,8 +74,10 @@
       NavBar,
       TabControl,
       Scroll,
+      BackTop,
       GoodsItem
     },
+    mixins: [itemListenMixin, backTopMixin],
     created() {
       // 获取商品列表
       this.getGoodsList()
@@ -79,10 +92,6 @@
           this.goods.page +=1
           this.$refs.scroll.finishPullUp()
         })
-      },
-      // 监听图片加载完成
-      imgLoad() {
-        this.$refs.scroll.refresh()
       },
       // 返回上一页
       back() {

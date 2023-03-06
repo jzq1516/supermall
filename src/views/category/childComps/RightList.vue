@@ -34,6 +34,9 @@
 </script>
 
 <style scoped>
+  .right-list .goods-con:first-child {
+    padding-top: 25px;
+  }
 
 	.goods-title {
 		display: flex;
@@ -41,6 +44,10 @@
 		align-items: center;
 		margin: 25px 0;
 	}
+
+  .right-list .goods-con:first-child .goods-title {
+    margin-top: 0;
+  }
 
 	.goods-title .delimiter {
 		color: #ccc;

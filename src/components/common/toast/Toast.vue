@@ -37,10 +37,11 @@
     position: fixed;
     top: 50%;
     left: 50%;
-    padding: 8px 10px;
+    padding: 14px 16px;
     transform: translate(-50%, -50%);
     background-color: rgba(0, 0, 0, .7);
     color: #fff;
+    border-radius: 5px;
     z-index: 999;
   }
 </style>>

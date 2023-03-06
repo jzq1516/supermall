@@ -13,7 +13,6 @@
     </div>
     <!-- 底部工具栏 -->
     <goods-bottom-bar @addCart="addToCart"/>
-
   </div>
 </template>
 
@@ -26,6 +25,7 @@
   import GoodsBottomBar from './childComps/GoodsBottomBar.vue'
 
   import { getGoodsDetail } from "network/goodsDetail"
+  import { toast } from 'common/utils'
 
   import { mapActions } from 'vuex'
 
@@ -38,7 +38,7 @@
           goods_name: '',
           goods_price: 0,
           goods_introduce: '',
-          goodsBanners: []
+          goodsBanners: [],
         }
       }
     },
@@ -87,7 +87,7 @@
         // })
         this.addCart(product).then(res => {
           console.log(res);
-          this.$toast.show(res)
+          toast(res, require('assets/img/common/icon_right.png'))
         })
       }
     }    

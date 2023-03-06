@@ -6,7 +6,7 @@
        :key="item.goods_id"
     >
       <div class="goods-img-wrap">
-        <img :src="item.goods_small_logo ? item.goods_small_logo : 
+        <img v-lazy="item.goods_small_logo ? item.goods_small_logo : 
         'https://i.postimg.cc/cJVwNThp/nomap.jpg'" @load="imgLoad"/>
       </div>
       <div class="goods-info-wrap">

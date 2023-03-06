@@ -7,13 +7,13 @@
 		<!-- category内容区域 -->
 		<div class="category-content">
 			<!-- 左侧菜单 -->
-			<!-- <scroll ref="scroll"> -->
+			<scroll ref="scroll" class="content">
 				<left-menu :leftMenuList="leftMenuList" @itemClick="getItemIndex" />
-			<!-- </scroll> -->
+			</scroll>
 			<!-- 右侧列表 -->
-			<!-- <scroll ref="scroll"> -->
-				<right-list :rightContent="rightContent" />
-			<!-- </scroll> -->
+			<scroll ref="scroll" class="content">
+				<right-list :rightContent="rightContent" @imgLoad="imgLoad"/>
+			</scroll>
 		</div>
 	</div>
 </template>
@@ -26,6 +26,7 @@
 
 
 	import { getCategoryData } from 'network/category.js'
+    import { itemListenMixin } from 'common/mixin.js'
 
 	export default {
 		name: 'Category',
@@ -43,6 +44,7 @@
 			RightList,
 			Scroll
 		},
+    mixins: [itemListenMixin],
 		created() {
 			// 请求分类数据
 			this.getCategoryData()
@@ -58,13 +60,8 @@
 			},
 			getItemIndex(i) {
 				this.rightContent = this.categories[i].children
-			},
-			// imgLoadRefresh() {
-			// 	this.$refs.scroll.refresh()
-			// },
-			// itemLoadRefresh() {
-			// 	this.$refs.scroll.refresh()
-			// }
+        this.$refs.scroll.scrollTo(0, 0)
+			} 
 		}
 	}
 </script>
@@ -81,8 +78,8 @@
 
 	.category-content {
 		display: flex;
-		/* height: calc(100vh - 44px - 49px);
-		overflow: hidden; */
+    height: calc(100vh - 44px - 49px);
+    overflow: hidden;
 	}
 
 	.category-content>div:first-child {
@@ -93,15 +90,6 @@
 
 	.category-content>div:last-child {
 		flex: 5;
-	}
-
-	.category-content .content {
-		position: absolute;
-		left: 0;
-		right: 0;
-		top: 44px;
-		bottom: 49px;
-		overflow: hidden;
 	}
 
 </style>

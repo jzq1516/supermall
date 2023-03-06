@@ -5,7 +5,6 @@
 				 v-for="(item,index) in leftMenuList"
 				 :key="item"
 				 @click="hanleItemClick(index)"
-				 @load="itemLoad"
 		>{{item}}</div>
 	</div>
 </template>
@@ -28,9 +27,6 @@
 			hanleItemClick(i) {
 				this.currentIndex = i
 				this.$emit('itemClick', i)
-			},
-			itemLoad() {
-				this.$emit('itemLoad')
 			}
 		}
 	}

@@ -3,12 +3,12 @@
 		<nav-bar class="home-nav">
 			<div slot="center">购物车</div>
 		</nav-bar>
-		<scroll class="content" ref="scroll">
+		<scroll class="content" ref="scroll" :probe-type="3" @scroll="contentScroll">
       <swiper class="home-swipe" :banners="banners" indicatorColor="#ff0000"/>
 			<recommend-view :recommends="recommends"/>
-			<home-floor :floors="floors" @imgLoad="imgLoad" />
+			<home-floor :floors="floors" @imgLoad="imgLoad"/>
 		</scroll>
-		<back-top @click.native="backClick"/>
+		<back-top @click.native="backClick" v-show="isShowBackTop"/>
 	</div>
 </template>
 
@@ -16,12 +16,12 @@
 	import NavBar from 'components/common/navbar/NavBar.vue'
 	import Scroll from 'components/common/scroll/Scroll.vue'
 	import Swiper from 'components/common/swiper/Swiper.vue'
-	import BackTop from 'components/content/backTop/BackTop.vue'
   
 	import RecommendView from './childComps/RecommendView.vue'
 	import HomeFloor from './childComps/HomeFloor.vue'
 
 	import { getSwiperData,getNavData,getFloorData } from 'network/home.js'
+  import { itemListenMixin, backTopMixin } from 'common/mixin.js'
 
 	export default {
 		name: 'Home',
@@ -35,12 +35,12 @@
 		},
 		components: {
 			NavBar,
-			RecommendView,
-			HomeFloor,
 			Scroll,
-			BackTop,
-      Swiper
+      Swiper,
+			RecommendView,
+			HomeFloor
 		},
+    mixins: [itemListenMixin, backTopMixin],
 		created() {
 			// 1.请求轮播数据
 			this.getSwiperData()
@@ -48,7 +48,6 @@
 			this.getNavData()
 			// 3.请求楼层数据
 			this.getFloorData()
-
 		},
     activated() {
       this.$refs.scroll.scrollTo(0, this.saveY, 0)
@@ -58,13 +57,6 @@
       this.saveY = this.$refs.scroll.getScrollY()
     },
 		methods: {
-      imgLoad() {
-        this.$refs.scroll.refresh()
-      },
-			// 返回顶部
-			backClick() {
-				this.$refs.scroll.scrollTo(0, 0)
-			},
 			// 网络请求
 			getSwiperData() {
 				getSwiperData().then(res=>{
@@ -80,6 +72,7 @@
 			},
 			getNavData() {
 				getNavData().then(res=>{
+          res.message[0].navigator_url = '/cart'
 					this.recommends = res.message
 				})
 			},

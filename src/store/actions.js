@@ -11,11 +11,11 @@ export default {
       // 判断oldProduct
       if (oldProduct) {
         context.commit(ADD_COUNT, oldProduct)
-        resolve('商品数量+1');
+        resolve('加入成功');
       } else {
         newProduct.count = 1
         context.commit(ADD_TO_CART, newProduct)
-        resolve('添加新商品');
+        resolve('加入成功');
       }
     })
   }

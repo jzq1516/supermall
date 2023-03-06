@@ -2,11 +2,15 @@
 	<div class="floors">
 		<div v-for="item01 in floors" :key="item01.floor_title.name">
 			<div class="floor-title">
-        <img :src="item01.floor_title.image_src" @load="imgLoad"/>
+        <img v-lazy="item01.floor_title.image_src" @load="imgLoad"/>
 			</div>
 			<div class="floor-list">
-				<a href="javascript:;" class="item" v-for="item02 in item01.product_list" :key="item02.name">
-					<img :src="item02.image_src" @load="imgLoad"/>
+				<a href="javascript:;" 
+           class="item" 
+           v-for="item02 in item01.product_list" 
+           :key="item02.name"
+        >
+					<img v-lazy="item02.image_src" @load="imgLoad"/>
 				</a>
 			</div>
 		</div>

@@ -1,7 +1,9 @@
 <template>
 	<ul>
 		<li v-for="item in recommends" :key="item.name">
-			<img :src="item.image_src"/>
+      <a :href="item.navigator_url?item.navigator_url:'javascript:;'">
+			  <img v-lazy="item.image_src"/>
+      </a>
 		</li>
 	</ul>
 </template>

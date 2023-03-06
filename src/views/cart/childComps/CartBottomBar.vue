@@ -16,6 +16,8 @@
 
   import CheckButton from 'components/content/checkButton/CheckButton.vue'
 
+  import { toast } from 'common/utils'
+
   import { mapGetters } from 'vuex'
 
   export default {
@@ -50,7 +52,7 @@
       },
       calcClick() {
         if (!this.isCheckedAll) {
-          this.$toast.show('请选择商品')
+          toast('请选择商品')
         }
       }
     }
