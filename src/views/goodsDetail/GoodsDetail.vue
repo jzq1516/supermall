@@ -2,7 +2,7 @@
   <div class="goods-detail">
     <!-- 导航条 -->
     <nav-bar class="goods-detail-nav">
-     <img slot="left" src="~assets/img/common/arrow_left.png" @click="back"/>
+      <img slot="left" src="~assets/img/common/arrow_left.png" @click="back"/>
       <div slot="center">商品详情</div>
     </nav-bar>
     <div class="detail-content">
@@ -86,7 +86,6 @@
         //   console.log(res);
         // })
         this.addCart(product).then(res => {
-          console.log(res);
           toast(res, require('assets/img/common/icon_right.png'))
         })
       }

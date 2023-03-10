@@ -52,7 +52,7 @@
       },
       calcClick() {
         if (!this.isCheckedAll) {
-          toast('请选择商品')
+          toast('请选择商品', require('assets/img/common/icon_tip.png'))
         }
       }
     }

@@ -19,5 +19,12 @@ export function request(config) {
 
 	// 3.发送请求
 	return instance(config)
+}
 
+export function requestUser(config) {
+  const instance = axios.create({
+    baseURL: 'http://toutiao.itheima.net/'
+  })
+
+  return instance(config)
 }

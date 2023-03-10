@@ -72,7 +72,7 @@
 			},
 			getNavData() {
 				getNavData().then(res=>{
-          res.message[0].navigator_url = '/cart'
+          res.message[0].navigator_url = '/category'
 					this.recommends = res.message
 				})
 			},

@@ -15,5 +15,4 @@ export function toast(message,icon) {
     message,
     icon
   })
-  console.log(icon);
 }
