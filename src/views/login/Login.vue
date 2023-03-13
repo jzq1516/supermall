@@ -57,6 +57,7 @@
   import NavBar from 'components/common/navbar/NavBar.vue'
 
   import { login, sendSms } from 'network/user.js'
+  import { getSearchData } from 'network/search.js'
 
   export default {
     name: "Login",
@@ -138,6 +139,13 @@
           }
         }
       }
+    },
+    mounted() {
+      getSearchData('短袖').then(res => {
+        console.log(res);
+      }).catch(err => {
+        console.log(err);
+      })
     }
   }
 </script>

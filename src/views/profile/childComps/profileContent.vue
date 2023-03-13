@@ -31,7 +31,7 @@
           <span class="my-order">我的订单</span>
           <a href="javascript:;" class="more-order">
             <span>查看更多订单</span>
-            <img src="~assets/img/profile/arrow_right.png">
+            <img src="~assets/img/common/arrow_right.png">
           </a>
         </div>
         <div class="order-list">
@@ -61,32 +61,32 @@
         <a href="javascript:;">
           <img class="icon" src="~assets/img/profile/icon_yhq.png">
           <span>优惠券</span>
-          <img class="arrow-right" src="~assets/img/profile/arrow_right.png">
+          <img class="arrow-right" src="~assets/img/common/arrow_right.png">
         </a>
         <a href="javascript:;">
           <img class="icon" src="~assets/img/profile/icon_dz.png">
           <span>地址管理</span>
-          <img class="arrow-right" src="~assets/img/profile/arrow_right.png">
+          <img class="arrow-right" src="~assets/img/common/arrow_right.png">
         </a>
         <a href="javascript:;">
           <img class="icon" src="~assets/img/profile/icon_kf.png">
           <span>联系客服</span>
-          <img class="arrow-right" src="~assets/img/profile/arrow_right.png">
+          <img class="arrow-right" src="~assets/img/common/arrow_right.png">
         </a>
         <a href="javascript:;">
           <img class="icon" src="~assets/img/profile/icon_dy.png">
           <span>订阅</span>
-          <img class="arrow-right" src="~assets/img/profile/arrow_right.png">
+          <img class="arrow-right" src="~assets/img/common/arrow_right.png">
         </a>
         <a href="javascript:;">
           <img class="icon" src="~assets/img/profile/icon_dpj.png">
           <span>我的评价</span>
-          <img class="arrow-right" src="~assets/img/profile/arrow_right.png">
+          <img class="arrow-right" src="~assets/img/common/arrow_right.png">
         </a>
         <a href="javascript:;">
           <img class="icon" src="~assets/img/profile/icon_wtfk.png">
           <span>帮助反馈</span>
-          <img class="arrow-right" src="~assets/img/profile/arrow_right.png">
+          <img class="arrow-right" src="~assets/img/common/arrow_right.png">
         </a>
       </div>
   </div>

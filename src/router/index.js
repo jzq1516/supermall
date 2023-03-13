@@ -18,6 +18,7 @@ const Profile = () => import('views/profile/Profile.vue')
 const GoodsList = () => import('views/goodsList/GoodsList.vue')
 const GoodsDetail = () => import('views/goodsDetail/GoodsDetail.vue')
 const Login = () => import('views/login/Login.vue')
+const Search = () => import('views/search/Search.vue')
 
 const routes = [
 	{
@@ -51,6 +52,10 @@ const routes = [
 	{
 		path: '/login',
 		component: Login
+	},
+	{
+		path: '/search',
+		component: Search
 	}
 
 ]

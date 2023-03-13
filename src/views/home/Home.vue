@@ -1,8 +1,11 @@
 <template>
 	<div id="home">
+    <!-- 导航条 -->
 		<nav-bar class="home-nav">
 			<div slot="center">购物车</div>
 		</nav-bar>
+    <!-- 搜索 -->
+    <search-input/>
 		<scroll class="content" ref="scroll" :probe-type="3" @scroll="contentScroll">
       <swiper class="home-swipe" :banners="banners" indicatorColor="#ff0000"/>
 			<recommend-view :recommends="recommends"/>
@@ -16,6 +19,7 @@
 	import NavBar from 'components/common/navbar/NavBar.vue'
 	import Scroll from 'components/common/scroll/Scroll.vue'
 	import Swiper from 'components/common/swiper/Swiper.vue'
+	import SearchInput from 'components/common/searchInput/SearchInput.vue'
   
 	import RecommendView from './childComps/RecommendView.vue'
 	import HomeFloor from './childComps/HomeFloor.vue'
@@ -37,6 +41,7 @@
 			NavBar,
 			Scroll,
       Swiper,
+      SearchInput,
 			RecommendView,
 			HomeFloor
 		},
@@ -96,7 +101,7 @@
 	}
 
 	.content {
-		height: calc(100% - 44px - 49px);
+		height: calc(100% - 44px - 45px - 49px);
     overflow: hidden;
 	}
 
