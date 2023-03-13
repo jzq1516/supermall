@@ -56,8 +56,8 @@
         localStorage.removeItem('inputValue')
       },
       handleInput() {
-        clearTimeout(this.TimeId)
         const inputValue = this.inputValue
+        clearTimeout(this.TimeId)
         localStorage.setItem('inputValue', this.inputValue)
         this.TimeId = setTimeout(() => {
           getSearchData(inputValue).then(res => {
