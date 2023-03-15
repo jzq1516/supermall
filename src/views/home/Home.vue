@@ -5,7 +5,7 @@
 			<div slot="center">购物车</div>
 		</nav-bar>
     <!-- 搜索 -->
-    <search-input/>
+    <search-input @click.native="enterSearchClick"/>
 		<scroll class="content" ref="scroll" :probe-type="3" @scroll="contentScroll">
       <swiper class="home-swipe" :banners="banners" indicatorColor="#ff0000"/>
 			<recommend-view :recommends="recommends"/>
@@ -85,7 +85,11 @@
 				getFloorData().then(res=>{
 					this.floors = res.message
 				})
-			}
+			},
+      enterSearchClick() {
+        localStorage.removeItem('searchList')
+        localStorage.removeItem('inputValue')
+      }
 		},
 	}
 </script>

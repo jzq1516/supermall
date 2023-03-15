@@ -44,6 +44,9 @@
       NavBar,
       Scroll
     },
+    beforeDestroy() {
+      console.log('search-beforeDestroy');
+    },
     mounted() {
       this.searchList = JSON.parse(localStorage.getItem('searchList'))
       this.inputValue = localStorage.getItem('inputValue')
